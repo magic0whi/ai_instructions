@@ -11,4 +11,7 @@
 - **Preserve Data Formatting:** When modifying JSON, YAML, or configuration files (using tools like `jq` or Python), strictly maintain the original data formatting. Specifically, preserve Scientific Notation (e.g., `1e-06` instead of `0.000001`) and avoid introducing unnecessary structural changes. Use `sed` for surgical replacements if JSON parsers aggressively reformat the output.
 - **No-Dependency Preference:** When providing bash scripts or command-line solutions, prefer standard, built-in Unix tools (`curl`, `awk`, `sed`, `grep`) over requiring the user to install new packages (like `gh`), unless explicitly asked.
 - Never automatically run git add or git commit unless explicitly instructed to do so by the user.
-
+- **Code Style & Formatting:** Refrain from running automatic formatters (like `nix fmt` or `alejandra`). The core code style philosophy is to **minimize the total number of code lines** by maximizing the use of horizontal space.
+  - Keep comments wrapped to a maximum of **80 columns**.
+  - Keep code wrapped to a maximum of **120 columns**.
+  - Rather than automatically reformatting, provide suggestions if you see opportunities to safely condense code lines or if these column limits are violated.
