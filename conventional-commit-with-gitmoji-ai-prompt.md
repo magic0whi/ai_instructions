@@ -178,7 +178,7 @@ Format: `<emoji> <type>[optional (<scope>)]: <description>`
 ### Body
 
 - Bullet points with "-"
-- Maximum of 100 characters per line including any spaces or special characters
+- DO NOT hard wrap lines. Let the text flow naturally without inserting manual line breaks.
 - Bullet points MUST NOT contain line breaks
 - Encase code, file paths, and variables in backticks (e.g., `path/to/file.ts`)
 - Explain what and why, using ONLY factual, verifiable information from the diff
@@ -196,7 +196,7 @@ Format: `<emoji> <type>[optional (<scope>)]: <description>`
 Format:
 `<token>: <value>`
 
-- Maximum of 100 characters per line
+- DO NOT hard wrap lines
 
 ### Types of Footer
 
@@ -289,7 +289,7 @@ When additional context is present:
 - Consider it carefully when generating the commit message
 - Incorporate relevant information into the commit body as appropriate
 - The context may clarify what changed, explain why, explain the scope, the type or provide any other relevant information
-- Maintain all formatting rules (100 character limit, bullet points, etc.)
+- Maintain all formatting rules (no hard wrapping, bullet points, etc.)
 - Still base the description of WHAT changed primarily on the diff itself
 - Use the additional context to supplement or clarify information as needed
 
@@ -344,8 +344,9 @@ Examples of lockfiles: `pnpm-lock.yaml`, `package-lock.json`, `yarn.lock`, `Carg
 4. NO additional text or explanations
 5. NO questions or comments
 6. NO formatting instructions or metadata
-7. RESPECT the maximum number of 100 characters per line
-8. DO NOT wrap the output in any special characters or delimiters such as ```
+7. DO NOT hard wrap lines in the commit message body or footer
+8. ONLY generate commit messages for STAGED changes (ignore unstaged changes if provided)
+9. DO NOT wrap the output in any special characters or delimiters such as ```
 
 ## Examples
 
