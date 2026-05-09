@@ -8,7 +8,7 @@ Commits should follow the Conventional Commits 1.0.0 specification and be furthe
 
 ## The [Conventional Commits 1.0.0 Specification](https://www.conventionalcommits.org/en/v1.0.0/):
 
-The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
 1. Commits MUST be prefixed with a type, which consists of a noun, `feat`, `fix`, etc., followed by the OPTIONAL scope, OPTIONAL `!`, and REQUIRED terminal colon and space.
 2. The type `feat` MUST be used when a commit adds a new feature to your application or library.
@@ -18,15 +18,15 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 6. A longer commit body MAY be provided after the short description, providing additional contextual information about the code changes. The body MUST begin one blank line after the description.
 7. A commit body is free-form and MAY consist of any number of newline separated paragraphs.
 8. One or more footers MAY be provided one blank line after the body. Each footer MUST consist of a word token, followed by either a `:<space>` or `<space>#` separator, followed by a string value (this is inspired by the git trailer convention).
-9. A footer’s token MUST use `-` in place of whitespace characters, e.g., `Acked-by` (this helps differentiate the footer section from a multi-paragraph body). An exception is made for `BREAKING CHANGE`, which MAY also be used as a token.
-10. A footer’s value MAY contain spaces and newlines, and parsing MUST terminate when the next valid footer token/separator pair is observed.
+9. A footer's token MUST use `-` in place of whitespace characters, e.g., `Acked-by` (this helps differentiate the footer section from a multi-paragraph body). An exception is made for `BREAKING CHANGE`, which MAY also be used as a token.
+10. A footer's value MAY contain spaces and newlines, and parsing MUST terminate when the next valid footer token/separator pair is observed.
 11. Breaking changes MUST be indicated in the type/scope prefix of a commit, or as an entry in the footer.
 12. If included as a footer, a breaking change MUST consist of the uppercase text BREAKING CHANGE, followed by a colon, space, and description, e.g. BREAKING CHANGE: environment variables now take precedence over config files.
 13. If included in the type/scope prefix, breaking changes MUST be indicated by a `!` immediately before the `:`. If `!` is used, BREAKING CHANGE: MAY be omitted from the footer section, and the commit description SHALL be used to describe the breaking change.
 14. Types other than `feat` and `fix` MAY be used in your commit messages, e.g., docs: update ref docs.
 15. The units of information that make up Conventional Commits MUST NOT be treated as case sensitive by implementors, with the exception of BREAKING CHANGE which MUST be uppercase.
 16. BREAKING-CHANGE MUST be synonymous with BREAKING CHANGE, when used as a token in a footer.
-17. For Commits that include dependency updates, the body MUST include a list of all updated DIRECT dependencies with the versions they were updated from and the versions to which they were updated to. When a diff includes both package manifest files (package.json, Cargo.toml, pyproject.toml, etc.) and lockfiles (pnpm-lock.yaml, package-lock.json, yarn.lock, Cargo.lock, poetry.lock, etc.), ONLY the direct dependencies explicitly changed in the manifest file MUST be listed. Transitive dependency changes visible only in lockfiles MUST NOT be included, as they are automatic consequences of direct dependency updates.
+17. For Commits that include dependency updates, the body MUST include a list of all updated DIRECT dependencies with the versions they were updated from and the versions to which they were updated to. When a diff includes both package manifest files (package.json, Cargo.toml, pyproject.toml, flake.nix, etc.) and lockfiles (pnpm-lock.yaml, package-lock.json, yarn.lock, Cargo.lock, poetry.lock, flake.lock, etc.), ONLY the direct dependencies explicitly changed in the manifest file MUST be listed. Transitive dependency changes visible only in lockfiles MUST NOT be included, as they are automatic consequences of direct dependency updates.
 
 ## Output Format
 
@@ -84,20 +84,31 @@ When the provided diff contains changes that address SEPARATE, UNRELATED concern
 
 ## Type Reference
 
-| Type     | Title                    | Emoji | Description                                                                                            | Example Scopes (non-exaustive)                                |
-| -------- | ------------------------ | ----- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
-| build    | Builds                   | 🏗️    | Changes that affect the build system or external dependencies                                          | gulp, broccoli, npm                                           |
-| chore    | Chores                   | 🔧    | Other changes that don't modify src or test files                                                      | scripts, config                                               |
-| ci       | Continuous Integrations  | 👷    | Changes to our CI configuration files and scripts                                                      | Travis, Circle, BrowserStack, SauceLabs,github actions, husky |
-| docs     | Documentation            | 📝    | Documentation only changes                                                                             | README, API                                                   |
-| feat     | Features                 | ✨    | A new feature                                                                                          | user, payment, gallery                                        |
-| fix      | Bug Fixes                | 🐛    | A bug fix                                                                                              | auth, data                                                    |
-| perf     | Performance Improvements | ⚡️   | A code change that improves performance                                                                | query, cache                                                  |
-| refactor | Code Refactoring         | ♻️    | A code change that neither fixes a bug nor adds a feature                                              | utils, helpers                                                |
-| revert   | Reverts                  | ⏪️   | Reverts a previous commit                                                                              | query, utils,                                                 |
-| style    | Styles                   | 💄    | Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc) | formatting                                                    |
-| test     | Tests                    | ✅    | Adding missing tests or correcting existing tests                                                      | unit, e2e                                                     |
-| i18n     |                          | 🌐    | Internationalization                                                                                   | locale, translation                                           |
+| Type     | Title                    | Emoji | Description                                                                                            | Example Scopes (non-exhaustive)                                |
+| -------- | ------------------------ | ----- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| build    | Builds                   | 🏗️    | Changes that affect the build system or external dependencies                                          | gulp, broccoli, npm                                            |
+| chore    | Chores                   | 🔧    | Other changes that don't modify src or test files                                                      | scripts, config                                                |
+| ci       | Continuous Integrations  | 👷    | Changes to our CI configuration files and scripts                                                      | Travis, Circle, BrowserStack, SauceLabs, github actions, husky |
+| docs     | Documentation            | 📝    | Documentation only changes                                                                             | README, API                                                    |
+| feat     | Features                 | ✨    | A new feature                                                                                          | user, payment, gallery                                         |
+| fix      | Bug Fixes                | 🐛    | A bug fix                                                                                              | auth, data                                                     |
+| perf     | Performance Improvements | ⚡️    | A code change that improves performance                                                                | query, cache                                                   |
+| refactor | Code Refactoring         | ♻️    | A code change that neither fixes a bug nor adds a feature                                              | utils, helpers                                                 |
+| revert   | Reverts                  | ⏪️    | Reverts a previous commit                                                                              | query, utils                                                   |
+| style    | Styles                   | 🎨    | Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc) | formatting                                                     |
+| test     | Tests                    | ✅    | Adding missing tests or correcting existing tests                                                      | unit, e2e                                                      |
+| i18n     | Internationalization     | 🌐    | Internationalization                                                                                   | locale, translation                                            |
+
+### Additional Emoji (no new type — use the closest matching type above)
+
+These gitmoji are used as drop-in emoji replacements when the standard type emoji is less precise:
+
+| Emoji | Meaning                                    | When to use                                                                 |
+| ----- | ------------------------------------------ | --------------------------------------------------------------------------- |
+| 💡    | Add or update source code comments         | Use instead of 🔧 when the ONLY change is adding/modifying inline comments  |
+| 🔥    | Remove code or files                       | Use instead of 🔧 when the primary purpose is deleting code or files        |
+| ⬆️    | Upgrade dependencies                       | Use instead of 🏗️ when bumping package/input versions                       |
+| 💄    | UI and style file changes                  | Use instead of 🎨 when changes are to visual/CSS/UI assets specifically     |
 
 ## More information about types
 
@@ -164,7 +175,7 @@ Format: `<emoji> <type>[optional (<scope>)]: <description>`
 
 **When to include scope:**
 
-- The change affects a specific, identifiable component, module, or area (e.g., `auth`, `api`, `database`, `infra`, `terraform`, )
+- The change affects a specific, identifiable component, module, or area (e.g., `auth`, `api`, `database`, `infra`, `terraform`)
 - Including scope adds clarity about what part of the codebase changed
 - The scope has been given as part of the [Additional Context](#additional-context)
 - The scope is clear from the file paths or nature of changes
@@ -174,6 +185,21 @@ Format: `<emoji> <type>[optional (<scope>)]: <description>`
 - The change affects the entire project or multiple unrelated areas
 - No single scope accurately describes all changes
 - The type and description are sufficient to understand the change
+
+**Hierarchical scope notation:**
+
+When the codebase has a clear hierarchy (e.g., a NixOS flake with machines and modules, a monorepo with nested packages), use `::` as a namespace separator to express the scope path:
+
+```
+fix(Proteus-NUC::Services::Sunshine): change wantedBy to fix dependency loop
+refactor(NixOS::Headless::Traffic Quota): move tool deps into systemd path
+feat(Proteus-Desktop::Services::Garage): add S3 binary cache backend
+```
+
+Rules for hierarchical scopes:
+- Use PascalCase or the canonical name of each level (e.g., machine names as-is: `Proteus-NUC`, module group names: `NixOS::Headless`)
+- Only add levels that add genuine disambiguation — omit redundant levels
+- If the change spans the whole machine/top-level namespace rather than a specific sub-module, the top-level alone is sufficient (e.g., `Proteus-NUC`)
 
 ### Body
 
@@ -259,7 +285,7 @@ Reviewed-by: John Smith <john.smith@example.com>
 
 ##### Signed-off-by
 
-Purpose: To indicate that the commit complies with the project’s contribution guidelines, often seen in projects using the Developer Certificate of Origin (DCO).
+Purpose: To indicate that the commit complies with the project's contribution guidelines, often seen in projects using the Developer Certificate of Origin (DCO).
 Example:
 
 ```
@@ -329,12 +355,24 @@ When changes of the same type affect multiple scopes:
 
 When a diff includes both package manifest files and lockfile changes:
 
-- **DO:** Only list direct dependencies explicitly updated in the manifest (package.json, Cargo.toml, etc.)
-- **DON'T:** List transitive dependencies that only appear in lockfile changes (pnpm-lock.yaml, Cargo.lock, etc.)
+- **DO:** Only list direct dependencies explicitly updated in the manifest (package.json, Cargo.toml, flake.nix, etc.)
+- **DON'T:** List transitive dependencies that only appear in lockfile changes (pnpm-lock.yaml, Cargo.lock, flake.lock, etc.)
 - **Rationale:** Lockfile changes are automatic consequences of direct dependency updates and including them creates noise
 
-Examples of manifest files: `package.json`, `Cargo.toml`, `pyproject.toml`, `go.mod`, `Gemfile`
-Examples of lockfiles: `pnpm-lock.yaml`, `package-lock.json`, `yarn.lock`, `Cargo.lock`, `poetry.lock`, `go.sum`, `Gemfile.lock`
+Examples of manifest files: `package.json`, `Cargo.toml`, `pyproject.toml`, `go.mod`, `Gemfile`, `flake.nix`
+Examples of lockfiles: `pnpm-lock.yaml`, `package-lock.json`, `yarn.lock`, `Cargo.lock`, `poetry.lock`, `go.sum`, `Gemfile.lock`, `flake.lock`
+
+### Encrypted / Binary Secret Files
+
+When a diff includes re-encrypted or regenerated binary secret files (e.g., `.age`, `.sops`, `.enc`):
+
+- **DO:** Mention them briefly (e.g., "re-encrypt `foo.age` with updated recipients")
+- **DON'T:** Attempt to describe their contents or enumerate every binary change in detail
+- **Rationale:** These files have no human-readable diff; their change is implied by the surrounding key rotation or recipient update
+
+### Repo Isolation
+
+Each diff belongs to exactly one repository. Do NOT carry over context, file names, or assumptions from a previous diff that belonged to a different repo. The diff filename often indicates the repository name.
 
 ## Critical Requirements
 
@@ -523,7 +561,52 @@ index 5160b59..aa9c5bd 100644
 
 **Explanation:** Even though the lockfile shows many transitive changes (playwright-core, @vitest/browser references, etc.), we only document the single direct dependency that was intentionally updated in package.json. The lockfile changes are an automatic consequences of this update.
 
-### Example 5 - Multiple Distinct Changes
+### Example 5 - Nix Flake Input Bump
+
+This example shows how to handle a `flake.nix` + `flake.lock` update. `flake.nix` is the manifest; `flake.lock` is the lockfile. Only list inputs explicitly changed in `flake.nix`.
+
+**EXAMPLE INPUT:**
+
+```
+diff --git a/flake.nix b/flake.nix
+@@ -3,7 +3,7 @@
+   inputs = {
+-    nixpkgs.url = "github:NixOS/nixpkgs/abc1234";
++    nixpkgs.url = "github:NixOS/nixpkgs/def5678";
+-    home-manager.url = "github:nix-community/home-manager/abc9999";
++    home-manager.url = "github:nix-community/home-manager/bcd0000";
+diff --git a/flake.lock b/flake.lock
+[... many transitive hash changes ...]
+```
+
+**EXAMPLE OUTPUT:**
+
+```
+⬆️ build(flake): bump nixpkgs and home-manager inputs
+
+- nixpkgs: abc1234 → def5678
+- home-manager: abc9999 → bcd0000
+```
+
+### Example 6 - Hierarchical Scope (NixOS)
+
+This example demonstrates the `::` hierarchical scope notation for a structured NixOS config repo.
+
+**EXAMPLE INPUT:**
+
+```
+diff --git a/machines/x86_64-linux/Proteus-NUC/services_sunshine.nix ...
+- wantedBy = ["graphical-session.target"];
++ wantedBy = ["hyprland-session.target"];
+```
+
+**EXAMPLE OUTPUT:**
+
+```
+🐛 fix(Proteus-NUC::Services::Sunshine): change wantedBy to hyprland-session.target to break dependency loop
+```
+
+### Example 7 - Multiple Distinct Changes
 
 This example demonstrates the Multiple Distinct Changes format for unrelated changes in one diff.
 
@@ -537,113 +620,21 @@ index f5e38b6..b1a243c 100644
 @@ -1,10 +1,57 @@
 -### osX ###
 +# Created by https://www.toptal.com/developers/gitignore/api/react,macos
-+# Edit at https://www.toptal.com/developers/gitignore?templates=react,macos
-
-- +### macOS ###
-  +# General
-  +.DS_Store
-  +.AppleDouble
-  +.LSOverride
-- +# Icon must end with two \r
-  +Icon
--
-- +# Thumbnails
-  +.\_\*
-- +# Files that might appear in the root of a volume
-  +.DocumentRevisions-V100
-  +.fseventsd
-  +.Spotlight-V100
-  +.TemporaryItems
-  +.Trashes
-  +.VolumeIcon.icns
-  +.com.apple.timemachine.donotpresent
-- +# Directories potentially created on remote AFP share
-  +.AppleDB
-  +.AppleDesktop
-  +Network Trash Folder
-  +Temporary Items
-  +.apdisk
-- +### macOS Patch ###
-  +# iCloud generated files
-  +\*.icloud
-- +### react ###
-  .DS\_\*
-  _.log
-  logs
-  \*\*/_.backup._
-  \*\*/_.back.\*
-
-  +node_modules
-  +bower_components
-
-- +_.sublime_
-- +psd
-  +thumb
-  +sketch
-- +# End of https://www.toptal.com/developers/gitignore/api/react,macos
-- # electron-vite
-
-  node_modules
-  dist
-  @@ -20,9 +67,5 @@ out
-  \*.tsbuildinfo
-  next-env.d.ts
-
-  -# vscode settings
-  -.vscode
-  -.vscode/settings.json
-
-* # dev user data
-  devUserData
-  \ No newline at end of file
-  diff --git a/packages/main/src/mainWindow.ts b/packages/main/src/mainWindow.ts
-  index 31d5a13..1a6f952 100644
-  --- a/packages/main/src/mainWindow.ts
-  +++ b/packages/main/src/mainWindow.ts
-  @@ -18,7 +18,7 @@ async function createWindow(): Promise<BrowserWindow> {
-  sandbox: false, // Sandbox disabled because the demo of preload script depend on the Node.js api
-  webviewTag: false, // The webview tag is not recommended. Consider alternatives like an iframe or Electron's BrowserView. @see https://www.electronjs.org/docs/latest/api/webview-tag#warning
-  preload: PRELOAD_BUILT_FULL_PATH_ELECTRON,
-*      backgroundThrottling: false, // Add this line
-
--      backgroundThrottling: false,
-  },
-  });
-
+[...]
+diff --git a/packages/main/src/mainWindow.ts b/packages/main/src/mainWindow.ts
+[...]
+-      backgroundThrottling: false, // Add this line
++      backgroundThrottling: false,
 diff --git a/packages/renderer/src/components/demo/DemoMenu.tsx b/packages/renderer/src/components/demo/DemoMenu.tsx
-index 5daeb89..aeb4295 100644
---- a/packages/renderer/src/components/demo/DemoMenu.tsx
-+++ b/packages/renderer/src/components/demo/DemoMenu.tsx
-@@ -26,7 +26,7 @@ export default function DemoMenu(): JSX.Element {
-const linkClassName = `non-draggable`;
-
-return (
-
-- <div className="draggable navbar flex items-center justify-between border-b bg-muted-foreground/10 p-4">
-
-* <div className="draggable navbar flex items-center justify-between border-b bg-muted-foreground/15 p-4">
-         <NavigationMenu>
-           <NavigationMenuList>
-             <MenuItem>
-  diff --git a/packages/shared/src/db/scripts/migration.ts b/packages/shared/src/db/scripts/migration.ts
-  index 92e61f3..b703f69 100644
-  --- a/packages/shared/src/db/scripts/migration.ts
-  +++ b/packages/shared/src/db/scripts/migration.ts
-  @@ -49,8 +49,10 @@ export const runDbMigration = async ({
-         console.log(`🟡  No Databases to backup`);
-       else if (backupDb.error) throw new Error('Database Backup failed');
-       else if (backupDb.isSuccess) {
-
--      console.log(`✅ Backup completed in`, backupDb.endTime - backupDb.startTime, `ms.`);
--      console.log(`💾 Backup file: ${dbBackupFolderPath}/${backupDb.data?.backupFileName}`);
-
-*      console.log(`✅ Database Backup completed in`, backupDb.endTime - backupDb.startTime, `ms.`);
-*      console.log(
-*        `💾 Database Backup file: ${dbBackupFolderPath}/${backupDb.data?.backupFileName}`,
-*      );
-  }
-  console.log('⏳ Initializing Database Client...');
-  const migrationClient = new Database(dbFullPath);
+[...]
+- <div className="draggable navbar ... bg-muted-foreground/10 ...">
++ <div className="draggable navbar ... bg-muted-foreground/15 ...">
+diff --git a/packages/shared/src/db/scripts/migration.ts b/packages/shared/src/db/scripts/migration.ts
+[...]
+-      console.log(`✅ Backup completed in`, ...);
+-      console.log(`💾 Backup file: ...`);
++      console.log(`✅ Database Backup completed in`, ...);
++      console.log(`💾 Database Backup file: ...`);
 ```
 
 **EXAMPLE OUTPUT:**
@@ -660,7 +651,7 @@ return (
 
 - remove "Add this line" comment from backgroundThrottling setting
 
-💄 style(demo): adjust navbar background opacity
+🎨 style(demo): adjust navbar background opacity
 
 - change background opacity from /10 to /15 in DemoMenu navbar
 
