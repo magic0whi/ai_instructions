@@ -172,6 +172,7 @@ Format: `<emoji> <type>[optional (<scope>)]: <description>`
 - No period at the end
 - Maximum of 100 characters per line including any spaces or special characters
 - Must be in English
+- Encase filenames, file paths, and identifiers in backticks when referenced in the description (e.g., rename `` `traffic_quota.nix` `` to `` `traffic-quota.nix` ``)
 
 **When to include scope:**
 
@@ -198,6 +199,7 @@ feat(Proteus-Desktop::Services::Garage): add S3 binary cache backend
 
 Rules for hierarchical scopes:
 - Use PascalCase or the canonical name of each level (e.g., machine names as-is: `Proteus-NUC`, module group names: `NixOS::Headless`)
+- For multi-word module names, use the natural name with spaces rather than kebab-case or snake_case (e.g., `Traffic Quota` not `traffic-quota` or `traffic_quota`)
 - Only add levels that add genuine disambiguation — omit redundant levels
 - If the change spans the whole machine/top-level namespace rather than a specific sub-module, the top-level alone is sufficient (e.g., `Proteus-NUC`)
 
@@ -659,6 +661,27 @@ diff --git a/packages/shared/src/db/scripts/migration.ts b/packages/shared/src/d
 
 - add "Database" prefix to backup completion and file path messages
 ```
+
+### Example 8 - NixOS File Rename with Hierarchical Scope
+
+This example demonstrates using hierarchical scope and backtick-wrapped filenames in the subject line for a pure rename (no content changes).
+
+**EXAMPLE INPUT:**
+
+```
+diff --git a/modules/nixos_headless/traffic_quota.nix b/modules/nixos_headless/traffic-quota.nix
+similarity index 100%
+rename from modules/nixos_headless/traffic_quota.nix
+rename to modules/nixos_headless/traffic-quota.nix
+```
+
+**EXAMPLE OUTPUT:**
+
+```
+♻️ refactor(NixOS::Headless): rename `traffic_quota.nix` to `traffic-quota.nix`
+```
+
+**Explanation:** The subject line is fully self-explanatory — no body needed. Filenames are wrapped in backticks. The hierarchical scope uses PascalCase levels derived from the directory path (`nixos_headless` → `NixOS::Headless`).
 
 **━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━**
 **END OF EXAMPLES SECTION**
